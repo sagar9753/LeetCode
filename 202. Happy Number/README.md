@@ -14,7 +14,7 @@ Return true if n is a happy number, and false if not.
 Example 1:-
 
 Input: n = 19
-Output: true .|. 
+Output: true , 
 Explanation:
 1^2 + 9^2 = 82,
 8^2 + 2^2 = 68,
