@@ -16,10 +16,8 @@ Question Link :- https://leetcode.com/problems/remove-duplicates-from-sorted-lis
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if(head==null)
-            return head;
         ListNode temp=head;
-        ListNode t=head.next;
+        ListNode t=head;
 
         while(t != null){
             if(temp.val != t.val){
@@ -27,8 +25,8 @@ class Solution {
                 temp=t;
             }
             t=t.next;
+            temp.next=null;
         }
-        temp.next=null;
         return head;
     }
 }
