@@ -1,6 +1,6 @@
 Ques link - https://leetcode.com/problems/find-the-winner-of-an-array-game
 
------------------------------------------------------ Solution -------------------------------------------------------------
+----------------------------------------------------- Solution 1 -------------------------------------------------------------
 
 class Solution {
     public int getWinner(int[] arr, int k) {
@@ -28,5 +28,24 @@ class Solution {
         if(count == k)
             return prev;
         return cur;
+    }
+}
+
+------------------------------------------------------ Solution 2 -----------------------------------------------------------------
+
+class Solution {
+    public int getWinner(int[] arr, int k) {
+        int ans = arr[0];
+        int count = 0;
+
+        for(int i = 1 ; i < arr.length && count < k ; i++){
+            if(ans > arr[i])
+                count++;
+            else{
+                count = 1;
+                ans = arr[i];
+            }
+        }
+        return ans;
     }
 }
