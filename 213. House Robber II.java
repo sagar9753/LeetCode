@@ -54,3 +54,26 @@ class Solution {
         return dp[r];
     }
 }
+
+-------------------------------------------------- Solution (Space Optimization) ------------------------------------------------------
+
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1)
+            return nums[0];
+        int l = solve(nums,0,nums.length-2);
+        int r = solve(nums,1,nums.length-1);
+        return Math.max(l,r);
+    }
+    public int solve(int[] nums,int l ,int r){
+        int prev1 = 0;
+        int prev2 = 0;
+
+        for(; l <= r ; l++){
+            int dp = Math.max(nums[l]+prev2,prev1);
+            prev2 = prev1;
+            prev1 = dp;
+        }
+        return prev1;
+    }
+}
