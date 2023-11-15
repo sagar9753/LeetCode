@@ -1,6 +1,6 @@
 Ques Link - https://leetcode.com/problems/house-robber-ii
 
------------------------------------------------------ Solution -----------------------------------------------------------
+----------------------------------------------------- Solution (Recursion + Memoization) -----------------------------------------------------------
 
 class Solution {
     public int rob(int[] nums) {
@@ -26,5 +26,31 @@ class Solution {
         int notrob = solve(nums,l,r-1,dp);
 
         return dp[r] = Math.max(rob,notrob);
+    }
+}
+
+------------------------------------------------------ Solution (Tabulation) ------------------------------------------------------------
+
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1)
+            return nums[0];
+        int l = solve(nums,0,nums.length-2);
+        int r = solve(nums,1,nums.length-1);
+        return Math.max(l,r);
+    }
+    public int solve(int[] nums,int l ,int r){
+        int[] dp = new int[nums.length];
+        dp[l] = nums[l];
+
+        for(int i = l+1;i <= r; i++){
+            int rob = nums[i];
+            if(i > l+1)
+                rob += dp[i-2];
+            int notrob = dp[i-1];
+
+            dp[i] = Math.max(rob,notrob);
+        }
+        return dp[r];
     }
 }
